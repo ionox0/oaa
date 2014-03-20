@@ -16,7 +16,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-mongoimport');
   grunt.loadNpmTasks('grunt-notify');
   grunt.loadNpmTasks('grunt-env');
-
+  grunt.loadNpmTasks('grunt-mongo-drop');
   grunt.loadNpmTasks('grunt-mocha-cov');
   grunt.loadNpmTasks('grunt-concurrent');
 
@@ -213,7 +213,7 @@ module.exports = function(grunt) {
     },
     mongoimport: {
       options: {
-        db : 'oaa-development',
+        db : 'oaa-test',
         //optional
         //host : 'localhost',
         //port: '27017',
@@ -242,11 +242,17 @@ module.exports = function(grunt) {
     },
     concurrent: {
       buildDev: ['sass:dev', 'browserify:dev', 'jshint:all']
+    },
+    mongo_drop: {
+      test: {
+        'uri' : 'mongodb://localhost/oaa-test'
+      }
     }
   });
 
   grunt.registerTask('build:dev', ['clean:dev', 'concurrent:buildDev', 'copy:dev']);
   grunt.registerTask('build:prod', ['clean:prod', 'browserify:prod', 'jshint:all', 'copy:prod']);
+  grunt.registerTask('test:prepare', ['mongo_drop', 'mongoimport']);
   grunt.registerTask('test', ['env:test', 'jshint', 'mochacov:unit','mochacov:coverage' ]);
   grunt.registerTask('travis', ['jshint', 'mochacov:unit', 'mochacov:coverage', 'mochacov:coveralls']);
   grunt.registerTask('server', [ 'env:dev', 'build:dev', 'express:dev', 'watch:express','notify' ]);
