@@ -1,6 +1,7 @@
 // app/routes.js
 
 module.exports = function(app, passport) {
+  'use strict';
 
   // route for twitter authentication and login
   app.get('/auth/twitter', passport.authenticate('twitter'));
@@ -14,8 +15,11 @@ module.exports = function(app, passport) {
 
 };
 
+/*
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
+
+  'use strict';
 
   // if user is authenticated in the session, carry on
   if (req.isAuthenticated())
@@ -24,3 +28,4 @@ function isLoggedIn(req, res, next) {
   // if they aren't redirect them to the home page
   res.redirect('/');
 }
+*/
