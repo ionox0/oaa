@@ -24,7 +24,10 @@ var port     = process.env.PORT || 3000;
 var passport = require('passport');
 var flash    = require('connect-flash');
 var mongoose = require('mongoose');
+
 require('./config/passport')(passport);
+var oauth = require('./api/routes/authenticationRoutes');
+
 
 
 // set up consolidate and handlebars templates
@@ -53,6 +56,7 @@ app.configure(function() {
   app.use(app.router);
 });
 
+oauth(app, passport);
 
 app.configure('development', function() {
   app.use(express.errorHandler());
