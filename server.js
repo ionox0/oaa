@@ -26,9 +26,7 @@ var flash    = require('connect-flash');
 var mongoose = require('mongoose');
 
 require('./config/passport')(passport);
-var oauth = require('./api/routes/authenticationRoutes');
-
-
+//var oauth = require('./api/routes/authenticationRoutes');
 
 // set up consolidate and handlebars templates
 app.engine('hbs', cons.handlebars);
@@ -39,7 +37,6 @@ app.configure('development', function() {
   app.use(express.logger('dev'));
   app.use(express.errorHandler());
 });
-
 
 app.configure(function() {
   app.use(express.bodyParser());
@@ -56,7 +53,7 @@ app.configure(function() {
   app.use(app.router);
 });
 
-oauth(app, passport);
+//oauth(app, passport);
 
 app.configure('development', function() {
   app.use(express.errorHandler());
