@@ -7,21 +7,21 @@ module.exports = Backbone.View.extend({
   tagName: 'div',
   className: 'grid col_12',
 
-  initialize: function(){
+  initialize: function() {
     this.collection.on('add', this.addUser, this);
     this.collection.on('reset', this.addAll, this);
   },
 
-  addUser: function(user){
+  addUser: function(user) {
     var userView = new UserView({model: user});
     this.$el.append(userView.el);
   },
 
-  addAll: function(){
+  addAll: function() {
     this.collection.forEach(this.addUser);
   },
 
-  render: function(){
+  render: function() {
     this.addAll();
   }
 });

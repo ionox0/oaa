@@ -7,9 +7,9 @@ var _        = require('underscore');
 var Backbone = require('backbone');
 Backbone.$   = $;
 
-var UserRoutes = require('./routers/UserRouter');
+var ApplicationRouter = require('./routers/ApplicationRouter');
 
 $(function() {
-  var userRoutes = new UserRoutes();
-  userRoutes.start();
+  var appRouter = new ApplicationRouter;
+  appRouter.start();
 });

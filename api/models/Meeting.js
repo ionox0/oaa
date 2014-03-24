@@ -6,7 +6,7 @@ var schema = new mongoose.Schema({
   name: String,
   starts_at: Date,
   description: String,
-  comments: [{body: String, user_id: String, created_at: Date}],
+  comments: [{body: String, author: String, author_id: String, created_at: Date}],
   _user: {type: String, ref: 'User'}
 });
 
