@@ -9,20 +9,20 @@ module.exports = Backbone.Router.extend({
   routes: {'users/:id': 'show',
            'users': 'index'},
 
-  show: function(id){
+  show: function(id) {
     console.log(id);
   },
 
-  start: function(){
+  start: function() {
     Backbone.history.start({pushState: false});
   },
 
-  index: function(){
+  index: function() {
     this.userList.fetch();
     $('.mainContent').replaceWith(this.userListView.el);
   },
 
-  initialize: function(){
+  initialize: function() {
     this.userList = new UserCollection();
     this.userListView = new UserCollectionView({collection: this.userList});
 
