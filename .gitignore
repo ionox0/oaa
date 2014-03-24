@@ -20,4 +20,8 @@ dist/
 app/bower_components/
 .sass-cache/
 bower_components/
-app/bower_components/
+
+
+//Twitter application secrets:
+config/auth.js
+
