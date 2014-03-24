@@ -9,17 +9,18 @@ module.exports = Backbone.View.extend({
   tagName: 'div',
   className: 'agenda_items',
 
-  intialize: function() {
-    console.log(this);
+  initialize: function() {
     this.collection.on('add', this.addAgendaItem, this);
     this.collection.on('reset', this.addAll, this);
   },
 
-  addAgendaItem: function(agendaItem) {
-    console.log(this);
-    console.log(agendaItem);
+  addAgendaItem: function(agendaItem, context) {
     var agendaItemView = new AgendaItemView({model: agendaItem});
-    this.$el.append(agendaItemView.el);
+    if(this === undefined) {
+      context.$el.append(agendaItemView.el);
+    }else {
+      this.$el.append(agendaItemView.el);
+    }
   },
 
   addAll: function() {
@@ -31,6 +32,6 @@ module.exports = Backbone.View.extend({
   },
 
   belongsToMeeting: function(meeting_id) {
-    this.collection.where({_meeting: meeting_id}).forEach(this.addAgendaItem);
+    this.collection.where({_meeting: meeting_id}).forEach(this.addAgendaItem, this);
   }
 });

@@ -47,7 +47,6 @@ module.exports = Backbone.Router.extend({
         agendaItemsList.fetch({
           success: function() {
             var agendaItemsView = new AgendaItemCollectionView({collection: agendaItemsList});
-            console.log(agendaItemsList);
             agendaItemsView.belongsToMeeting(id);
             $('.agendaItems').replaceWith(agendaItemsView.el);
           },
