@@ -7,7 +7,7 @@ Backbone.$         = $;
 
 module.exports = Backbone.View.extend({
   tagName: 'div',
-  className: 'grid col_12',
+  className: 'agenda_items',
 
   intialize: function() {
     console.log(this);
@@ -16,7 +16,7 @@ module.exports = Backbone.View.extend({
   },
 
   addAgendaItem: function(agendaItem) {
-    console.log(this);
+    console.log(agendaItem);
     var agendaItemView = new AgendaItemView({model: agendaItem});
     this.$el.append(agendaItemView.el);
   },

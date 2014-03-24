@@ -31,22 +31,23 @@ module.exports = Backbone.Router.extend({
   },
 
   show: function(id) {
-    console.log(id);
-    var meeting = new Meeting({'_id': id});
+    var meeting = new Meeting({id: id});
     var meetingView = new MeetingView({model: meeting});
     var agendaItemsList = new AgendaItemCollection();
-    var agendaItemsView = new AgendaItemCollectionView({collection: agendaItemsList});
-    console.log("something");
+
     meeting.fetch({
       error: function(model, xhr, options) {
         console.log(JSON.parse(xhr.responseText).errors);
       },
       success: function(model, response, options) {
-        console.log(meeting);
+        var meetingView = new MeetingView({model: model});
+        meetingView.render();
         $('.mainContent').replaceWith(meetingView.el);
-     
+
         agendaItemsList.fetch({
           success: function() {
+            var agendaItemsView = new AgendaItemCollectionView({collection: agendaItemsList});
+            console.log(agendaItemsList);
             agendaItemsView.belongsToMeeting(id);
             $('.agendaItems').replaceWith(agendaItemsView.el);
           },

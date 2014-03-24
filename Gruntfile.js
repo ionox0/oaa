@@ -25,7 +25,6 @@ module.exports = function(grunt) {
 
     env: {
       options: {
-
       },
       dev: {
         NODE_ENV: 'development'
