@@ -20,7 +20,7 @@ var app      = express();
 var cons     = require('consolidate');
 var http     = require('http');
 var path     = require('path');
-var port     = process.env.PORT || 3000;
+var port     = process.env.PORT || 3003;
 var passport = require('passport');
 var flash    = require('connect-flash');
 var mongoose = require('mongoose');
@@ -101,6 +101,6 @@ app.delete('/api/v1/agenda_items/:id', agendaItems.destroy);
 
 var server = http.createServer(app);
 
-server.listen(3000, function(){
-  console.log('Running on port 3000');
+server.listen(3003, function(){
+  console.log('Running on port 3003');
 });
